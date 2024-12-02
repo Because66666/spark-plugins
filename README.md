@@ -16,7 +16,7 @@ A modern, efficient Minecraft plugin downloader that allows you to search and do
 - **Framework**: Next.js
 - **Styling**: Tailwind CSS
 - **State Management**: React Context
-- **APIs**: SpigotMC, Modrinth
+- **APIs**: Spiget, Modrinth
 
 ## Getting Started
 

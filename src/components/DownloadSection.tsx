@@ -10,6 +10,7 @@ interface PluginDownloadInfo {
   url: string
   version: string
   selectedVersion?: string
+  external?: boolean
 }
 
 export function DownloadSection() {
@@ -18,14 +19,14 @@ export function DownloadSection() {
   const [downloadProgress, setDownloadProgress] = useState(0)
   const [pluginVersions, setPluginVersions] = useState<Record<string, string>>({})
 
-  const downloadPlugin = async (url: string) => {
-    console.log('Attempting to download from URL:', url)
+  const downloadPlugin = async (url: string, external: boolean = false) => {
+    console.log('Attempting to download from URL:', url, 'external:', external)
     const response = await fetch('/api/download', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ url }),
+      body: JSON.stringify({ url, external }),
     })
 
     if (!response.ok) {
@@ -105,7 +106,8 @@ export function DownloadSection() {
 
       return { 
         url: targetVersion.files[0].url, 
-        version: targetVersion.version_number 
+        version: targetVersion.version_number,
+        external: true
       }
     } catch (error) {
       console.error('Error getting Modrinth download info:', error)
@@ -210,7 +212,7 @@ export function DownloadSection() {
             }
 
             console.log(`Downloading ${plugin.name} version ${downloadInfo.version} from ${downloadInfo.url}`)
-            const blob = await downloadPlugin(downloadInfo.url)
+            const blob = await downloadPlugin(downloadInfo.url, downloadInfo.external)
             console.log(`Successfully downloaded ${plugin.name}, size: ${blob.size} bytes`)
             
             // Generate unique filename

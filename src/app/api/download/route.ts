@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 
 export async function POST(request: Request) {
   try {
-    const { url } = await request.json()
+    const { url, external } = await request.json()
     console.log('Received download request for URL:', url)
     
     if (!url) {
@@ -30,7 +30,6 @@ export async function POST(request: Request) {
     }
 
     try {
-      // Validate URL format
       new URL(url)
     } catch (e) {
       console.error('Invalid URL:', url, e)
@@ -41,10 +40,30 @@ export async function POST(request: Request) {
     }
 
     console.log(`Attempting to download plugin from: ${url}`)
+    
+    const headers: Record<string, string> = {
+      'User-Agent': 'SparkPlugins/1.0.0'
+    }
+
+    // If it's not an external resource, add Spiget-specific headers
+    if (!external) {
+      headers['Accept'] = '*/*'
+      headers['Accept-Encoding'] = 'gzip, deflate, br'
+      headers['Accept-Language'] = 'en-US,en;q=0.9'
+      headers['Cache-Control'] = 'no-cache'
+      headers['Connection'] = 'keep-alive'
+      headers['DNT'] = '1'
+      headers['Pragma'] = 'no-cache'
+      headers['Sec-Fetch-Dest'] = 'document'
+      headers['Sec-Fetch-Mode'] = 'navigate'
+      headers['Sec-Fetch-Site'] = 'same-origin'
+      headers['Sec-Fetch-User'] = '?1'
+      headers['Upgrade-Insecure-Requests'] = '1'
+    }
+
     const response = await fetch(url, {
-      headers: {
-        'User-Agent': 'SparkPlugins/1.0.0'
-      }
+      headers,
+      redirect: 'follow'
     })
     
     if (!response.ok) {
@@ -58,31 +77,24 @@ export async function POST(request: Request) {
 
     const contentType = response.headers.get('content-type')
     if (!contentType) {
-      console.warn('No content-type header received, defaulting to application/java-archive')
-    }
-
-    const blob = await response.blob()
-    if (!blob.size) {
-      console.error('Received empty file')
+      console.error('No content type in response')
       return NextResponse.json(
-        { error: 'Received empty file' },
+        { error: 'No content type in response' },
         { status: 400 }
       )
     }
 
-    console.log(`Successfully downloaded plugin (${blob.size} bytes)`)
-    return new NextResponse(blob, {
+    const data = await response.arrayBuffer()
+    return new NextResponse(data, {
       headers: {
-        'Content-Type': contentType || 'application/java-archive',
-        'Content-Disposition': `attachment; filename="plugin.jar"`,
-        'Content-Length': blob.size.toString(),
-      },
+        'Content-Type': contentType,
+        'Content-Disposition': 'attachment'
+      }
     })
   } catch (error) {
-    console.error('Download error:', error)
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred'
+    console.error('Error downloading plugin:', error)
     return NextResponse.json(
-      { error: errorMessage },
+      { error: 'Failed to download plugin' },
       { status: 500 }
     )
   }

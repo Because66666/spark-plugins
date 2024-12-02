@@ -1,78 +1,68 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
-export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
-  const id = params.id
+export const dynamic = 'force-dynamic'
+
+export async function GET(request: NextRequest) {
+  const segments = request.nextUrl.pathname.split('/')
+  const id = segments[segments.indexOf('spigot') + 1]
 
   try {
-    if (!id || typeof id !== 'string') {
-      console.error('Invalid resource ID:', id)
+    if (!id || typeof id !== 'string' || id === 'download') {
       return NextResponse.json(
         { error: 'Invalid resource ID' },
         { status: 400 }
       )
     }
 
-    console.log(`Fetching Spigot download URL for resource: ${id}`)
-    const response = await fetch(
-      `https://api.spiget.org/v2/resources/${id}/download`,
-      {
-        headers: {
-          'User-Agent': 'SparkPlugins/1.0.0'
-        },
-        redirect: 'follow'
+    // Get the resource details first to verify it exists and get version info
+    const resourceUrl = `https://api.spiget.org/v2/resources/${id}`
+    const resourceResponse = await fetch(resourceUrl, {
+      headers: {
+        'User-Agent': 'SparkPlugins/1.0.0'
       }
-    )
+    })
+
+    if (!resourceResponse.ok) {
+      const errorMessage = `Resource not found: ${resourceResponse.status} ${resourceResponse.statusText}`
+      return NextResponse.json({ error: errorMessage }, { status: resourceResponse.status })
+    }
+
+    const resource = await resourceResponse.json()
     
-    if (!response.ok) {
-      const errorMessage = `Spigot API error: ${response.status} ${response.statusText}`
-      console.error(errorMessage)
-      return NextResponse.json(
-        { error: errorMessage },
-        { status: response.status }
-      )
+    // Get the latest version
+    const versionUrl = `https://api.spiget.org/v2/resources/${id}/versions/latest`
+    const versionResponse = await fetch(versionUrl, {
+      headers: {
+        'User-Agent': 'SparkPlugins/1.0.0'
+      }
+    })
+
+    if (!versionResponse.ok) {
+      const errorMessage = `Failed to get version info: ${versionResponse.status} ${versionResponse.statusText}`
+      return NextResponse.json({ error: errorMessage }, { status: versionResponse.status })
     }
 
-    // The Spigot API redirects to the actual download URL
-    const downloadUrl = response.url
-    console.log('Received download URL from Spigot:', downloadUrl)
-    
-    if (!downloadUrl) {
-      console.error('No download URL received from Spigot')
-      return NextResponse.json(
-        { error: 'No download URL received from Spigot' },
-        { status: 400 }
-      )
+    const version = await versionResponse.json()
+
+    // If it's an external resource, return the external URL directly
+    if (resource.external) {
+      return NextResponse.json({ 
+        downloadUrl: resource.file.externalUrl,
+        external: true,
+        version: version.name
+      })
     }
 
-    if (!downloadUrl.startsWith('http')) {
-      console.error('Invalid download URL format:', downloadUrl)
-      return NextResponse.json(
-        { error: 'Invalid download URL received from Spigot' },
-        { status: 400 }
-      )
-    }
-
-    try {
-      // Validate URL format
-      new URL(downloadUrl)
-    } catch (e) {
-      console.error('Invalid URL from Spigot:', downloadUrl, e)
-      return NextResponse.json(
-        { error: 'Invalid URL format from Spigot' },
-        { status: 400 }
-      )
-    }
-
-    console.log(`Successfully retrieved download URL for resource ${id}`)
-    return NextResponse.json({ downloadUrl })
+    // For internal resources, use direct download
+    const downloadUrl = `https://api.spiget.org/v2/resources/${id}/download`
+    return NextResponse.json({ 
+      downloadUrl,
+      external: false,
+      version: version.name
+    })
   } catch (error) {
-    console.error('Spigot download API error:', error)
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred'
     return NextResponse.json(
-      { error: errorMessage },
+      { error: 'Failed to process download request' },
       { status: 500 }
     )
   }

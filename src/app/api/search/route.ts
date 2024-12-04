@@ -102,7 +102,7 @@ async function getSpigotVersions(resourceId: number): Promise<any[]> {
 async function searchSpigot(query: string): Promise<Plugin[]> {
   try {
     const response = await fetch(
-      `https://api.spiget.org/v2/search/resources/${encodeURIComponent(query)}?size=10&sort=-downloads&fields=id,name,tag,author,testedVersions,downloads`
+      `https://api.spiget.org/v2/search/resources/${encodeURIComponent(query)}?size=10&sort=-downloads&fields=id,name,tag,author,testedVersions,downloads,premium`
     )
     const results = await response.json()
 
@@ -113,7 +113,7 @@ async function searchSpigot(query: string): Promise<Plugin[]> {
           const details = await detailsResponse.json()
           
           const versions = await getSpigotVersions(result.id)
-          
+
           return {
             id: `spigot-${result.id}`,
             name: result.name,
@@ -122,7 +122,8 @@ async function searchSpigot(query: string): Promise<Plugin[]> {
             downloads: result.downloads,
             provider: 'spigot',
             resourceUrl: `https://www.spigotmc.org/resources/${result.id}`,
-            versions: versions
+            versions: versions,
+            premium: result.premium
           }
         } catch (error) {
           console.error(`Error processing Spigot plugin ${result.id}:`, error)

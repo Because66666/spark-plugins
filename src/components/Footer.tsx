@@ -16,7 +16,7 @@ export function Footer() {
             <ul className="space-y-2 text-gray-400">
               <li>
                 <a 
-                  href="https://github.com/xLevitate/sparkplugins"
+                  href="https://github.com/xLevitate/spark-plugins"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-primary-400 transition-colors inline-flex items-center"

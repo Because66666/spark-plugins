@@ -38,7 +38,7 @@ export function NavLinks() {
           <Heart className="h-5 w-5" />
         </a>
         <a
-          href="https://github.com/xLevitate/sparkplugins"
+          href="https://github.com/xLevitate/spark-plugins"
           target="_blank"
           rel="noopener noreferrer"
           className="text-gray-400 hover:text-primary-400 transition-colors"

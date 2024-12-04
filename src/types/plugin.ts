@@ -7,6 +7,7 @@ export interface Plugin {
   downloads: number
   provider: PluginProvider
   url: string
+  premium: boolean
 }
 
 export interface SavedPlugin extends Plugin {

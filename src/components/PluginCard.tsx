@@ -25,6 +25,9 @@ export default function PluginCard({ plugin, showActions = true }: PluginCardPro
   const [error, setError] = useState<string | null>(null)
   const isInQueue = isSaved(plugin.id)
 
+  console.log(plugin.name)
+  console.log(plugin.premium)
+
   useEffect(() => {
     const fetchVersions = async () => {
       try {
@@ -140,15 +143,25 @@ export default function PluginCard({ plugin, showActions = true }: PluginCardPro
                   Remove
                 </button>
               ) : (
-                <button
-                  onClick={handleAddToQueue}
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-md text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 transition-colors"
-                  disabled={!selectedVersion}
-                >
-                  <PlusIcon className="h-4 w-4" />
-                  Add to Queue
-                </button>
-              )}
+                !plugin.premium ? (
+                  <button
+                      onClick={handleAddToQueue}
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-md text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 transition-colors"
+                      disabled={!selectedVersion}
+                  >
+                    <PlusIcon className="h-4 w-4" />
+                    Add to Queue
+                  </button>
+                ) : (
+                  <button
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-md text-red-700 dark:text-red-400 transition-colors"
+                      disabled
+                      title="This is a premium plugin and cannot be added to the queue. Please download it from the original site."
+                  >
+                    Premium Plugin
+                  </button>
+                )
+            )}
             </div>
           )}
         </div>

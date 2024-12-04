@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Plugin } from '@/types/plugin'
 import { Listbox, Transition } from '@headlessui/react'
 import { ChevronUpDownIcon } from '@heroicons/react/20/solid'
-import { PlusIcon, TrashIcon } from '@heroicons/react/24/outline'
+import { PlusIcon, TrashIcon, ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 import { useSavedPlugins } from '@/contexts/SavedPluginsContext'
 
 interface PluginCardProps {
@@ -94,9 +94,22 @@ export default function PluginCard({ plugin, showActions = true }: PluginCardPro
       <div className="p-4">
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0 flex-1">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white truncate">
-              {plugin.name}
-            </h3>
+            <div className="flex items-center gap-2">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white truncate">
+                {plugin.name}
+              </h3>
+              <a
+                href={plugin.provider === 'spigot' 
+                  ? `https://www.spigotmc.org/resources/${plugin.id.replace('spigot-', '')}`
+                  : `https://modrinth.com/plugin/${plugin.id}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                title="View on original site"
+              >
+                <ArrowTopRightOnSquareIcon className="h-5 w-5" />
+              </a>
+            </div>
             <p className="mt-1 text-sm text-gray-500 dark:text-gray-400 line-clamp-2">
               {plugin.description}
             </p>

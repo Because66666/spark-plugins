@@ -114,8 +114,6 @@ async function searchSpigot(query: string): Promise<Plugin[]> {
           
           const versions = await getSpigotVersions(result.id)
 
-          console.log(result)
-          
           return {
             id: `spigot-${result.id}`,
             name: result.name,

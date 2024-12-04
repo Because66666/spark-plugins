@@ -25,9 +25,6 @@ export default function PluginCard({ plugin, showActions = true }: PluginCardPro
   const [error, setError] = useState<string | null>(null)
   const isInQueue = isSaved(plugin.id)
 
-  console.log(plugin.name)
-  console.log(plugin.premium)
-
   useEffect(() => {
     const fetchVersions = async () => {
       try {

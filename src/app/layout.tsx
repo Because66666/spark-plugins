@@ -1,6 +1,7 @@
 import { ClientLayout } from '@/components/ClientLayout'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
 import '@/styles/globals.css'
 import { Space_Grotesk } from 'next/font/google'
 
@@ -48,6 +49,7 @@ export default function RootLayout({
             </main>
           </ClientLayout>
           <Footer />
+          <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_ID || ''} />
         </div>
       </body>
     </html>

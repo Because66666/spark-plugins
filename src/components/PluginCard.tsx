@@ -81,7 +81,23 @@ export default function PluginCard({ plugin, showActions = true }: PluginCardPro
 
   const handleAddToQueue = () => {
     if (selectedVersion) {
-      savePlugin(plugin, selectedVersion.name, selectedVersion.minecraftVersions)
+      if (plugin.provider === 'spigot') {
+        fetch(`/api/spigot/${plugin.id.replace('spigot-', '')}/check-external`)
+          .then(response => response.json())
+          .then(data => {
+            if (data.external) {
+              setError('This plugin uses an external download link and cannot be added to the queue. Please visit the plugin page to download it manually.');
+            } else {
+              savePlugin(plugin, selectedVersion.name, selectedVersion.minecraftVersions);
+            }
+          })
+          .catch(err => {
+            console.error('Error checking external status:', err);
+            setError('Failed to check plugin download type. Please try again.');
+          });
+      } else {
+        savePlugin(plugin, selectedVersion.name, selectedVersion.minecraftVersions);
+      }
     }
   }
 
@@ -165,6 +181,11 @@ export default function PluginCard({ plugin, showActions = true }: PluginCardPro
 
         {showActions && (
           <div className="mt-4 space-y-3">
+            {error && (
+              <p className="text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/30 p-2 rounded-md">
+                {error}
+              </p>
+            )}
             <div className="relative">
               <Listbox value={selectedVersion} onChange={setSelectedVersion} disabled={loading}>
                 <Listbox.Button className="relative w-full cursor-pointer rounded-lg bg-gray-50 dark:bg-gray-700/50 py-2 pl-3 pr-10 text-left text-sm text-gray-900 dark:text-white shadow-sm ring-1 ring-gray-200 dark:ring-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500">
@@ -217,12 +238,6 @@ export default function PluginCard({ plugin, showActions = true }: PluginCardPro
                 </Transition>
               </Listbox>
             </div>
-
-            {error && (
-              <p className="text-sm text-red-500 dark:text-red-400">
-                {error}
-              </p>
-            )}
 
             {selectedVersion?.minecraftVersions.length > 0 && (
               <div className="text-sm">

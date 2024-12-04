@@ -44,13 +44,13 @@ export async function GET(request: NextRequest) {
 
     const version = await versionResponse.json()
 
-    // If it's an external resource, return the external URL directly
+    // If it's an external resource, return an error
     if (resource.external) {
       return NextResponse.json({ 
-        downloadUrl: resource.file.externalUrl,
+        error: 'This plugin uses an external download link and cannot be downloaded through the queue system.',
         external: true,
-        version: version.name
-      })
+        externalUrl: resource.file.externalUrl
+      }, { status: 400 })
     }
 
     // For internal resources, use direct download

@@ -8,6 +8,8 @@ export interface Plugin {
   provider: PluginProvider
   url: string
   premium: boolean
+  external?: boolean
+  externalUrl?: string
 }
 
 export interface SavedPlugin extends Plugin {

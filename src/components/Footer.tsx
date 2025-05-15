@@ -27,7 +27,7 @@ export function Footer() {
               </li>
               <li>
               <a 
-                  href="https://github.com/xLevitate/spark-plugins"
+                  href="https://github.com/Because66666/spark-plugins"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-primary-400 transition-colors inline-flex items-center"

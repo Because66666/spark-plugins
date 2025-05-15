@@ -29,7 +29,7 @@ export function NavLinks() {
       </Link>
       <div className="flex items-center space-x-4 ml-4 pl-4 border-l border-dark-800">
         <a
-          href="https://github.com/xLevitate/spark-plugins"
+          href="https://github.com/Because66666/spark-plugins"
           target="_blank"
           rel="noopener noreferrer"
           className="text-gray-400 hover:text-primary-400 transition-colors"

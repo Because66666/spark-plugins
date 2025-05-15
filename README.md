@@ -1,76 +1,75 @@
 # SparkPlugins
 
-A modern, efficient Minecraft plugin downloader that allows you to search and download plugins from multiple sources including SpigotMC and Modrinth.
+一个现代高效的Minecraft插件下载器，可以从SpigotMC和Modrinth等多个来源搜索和下载插件。Because66666进行了全局汉化。不用于PR.
 
-## Features
+## 功能
 
-- 🔍 Search plugins from multiple sources
-- ⚡ Fast and responsive interface
-- 🌙 Clean, dark-themed design
-- 📦 Bulk plugin downloads
-- 🔄 Version selection support
-- 💻 Modern web technologies
+- 🔍 从多个来源搜索插件
+- ⚡ 快速响应的界面
+- 🌙 简洁的深色主题设计
+- 📦 批量插件下载
+- 🔄 版本选择支持
+- 💻 现代网页技术
 
-## Tech Stack
+## 技术栈
 
-- **Framework**: Next.js
-- **Styling**: Tailwind CSS
-- **State Management**: React Context
-- **APIs**: Spiget, Modrinth
+- **框架**: Next.js
+- **样式**: Tailwind CSS
+- **状态管理**: React Context
+- **API**: Spiget, Modrinth
 
-## Getting Started
+## 开始使用
 
-1. Clone the repository:
+1. 克隆仓库:
 ```bash
-git clone https://github.com/xLevitate/spark-plugins.git
+git clone https://github.com/Because66666/spark-plugins.git
 cd spark-plugins
 ```
 
-2. Install dependencies:
+2. 安装依赖:
 ```bash
 npm install
-# or
+# 或
 yarn install
 ```
 
-3. Run the development server:
+3. 运行开发服务器:
 ```bash
 npm run dev
-# or
+# 或
 yarn dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+4. 在浏览器中打开 [http://localhost:3000](http://localhost:3000)
 
-## Development
+## 开发
 
-The project structure follows Next.js conventions:
+项目结构遵循Next.js约定:
 
 ```
 src/
-├── app/             # App router pages
-├── components/      # React components
-├── contexts/        # React contexts
-└── types/          # TypeScript types
+├── app/             # 应用路由页面
+├── components/      # React组件
+├── contexts/        # React上下文
+└── types/          # TypeScript类型
 ```
 
-## Contributing
+## 贡献
 
-Contributions are welcome! Feel free to:
+欢迎贡献！你可以:
 
-1. Fork the repository
-2. Create a new branch
-3. Make your changes
-4. Submit a pull request
+1. Fork仓库
+2. 创建新分支
+3. 进行修改
+4. 提交Pull Request
 
-## License
+## 许可证
 
-This project is licensed under the GPL-3.0 License.
+本项目采用GPL-3.0许可证。
 
-## Support
+## 支持
 
-If you find this project helpful, consider:
-- ⭐ Starring the repository
-- 🐛 Reporting bugs
-- 💡 Suggesting features
-- ❤️ [Becoming a sponsor](https://github.com/sponsors/xLevitate)
+如果觉得本项目有帮助，可以考虑:
+- ⭐ 给仓库点星
+- 🐛 报告问题
+- 💡 建议功能

@@ -9,10 +9,10 @@ export default function DownloadPage() {
       <div className="container mx-auto px-4 py-12 max-w-7xl">
         <div className="mb-10 text-center">
           <h1 className="text-3xl font-bold text-white mb-3">
-            Minecraft Plugin Downloader
+            Minecraft插件下载器
           </h1>
           <p className="text-gray-400 text-sm max-w-2xl mx-auto">
-            Search across multiple sources, select versions, and download plugins in bulk. Streamline your server setup process.
+            从多个来源搜索插件，选择版本并批量下载。简化您的服务器设置流程。
           </p>
         </div>
         

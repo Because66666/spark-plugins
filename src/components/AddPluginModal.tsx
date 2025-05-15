@@ -35,7 +35,7 @@ export function AddPluginModal({ plugin, onClose }: AddPluginModalProps) {
           <div>
             <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Add Plugin</h2>
             <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-              Add {plugin.name} to your download queue
+              添加 {plugin.name} 到你的下载列表
             </p>
           </div>
           <button
@@ -57,13 +57,13 @@ export function AddPluginModal({ plugin, onClose }: AddPluginModalProps) {
             onClick={onClose}
             className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-colors"
           >
-            Cancel
+            取消
           </button>
           <button
             onClick={handleAdd}
             className="px-4 py-2 text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg transition-colors"
           >
-            Add to Queue
+            加入队列
           </button>
         </div>
       </div>

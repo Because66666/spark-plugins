@@ -20,7 +20,7 @@ export function SearchResults({ results, isLoading }: SearchResultsProps) {
   if (results.length === 0) {
     return (
       <div className="text-center py-8">
-        <p className="text-zinc-400">No plugins found</p>
+        <p className="text-zinc-400">没有检索到有关插件。</p>
       </div>
     )
   }

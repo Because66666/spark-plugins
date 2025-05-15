@@ -8,17 +8,17 @@ export default function Home() {
       <div className="container mx-auto px-4 py-16">
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">
-            Download Multiple Minecraft Plugins Instantly
+            一键下载多个Minecraft插件
           </h1>
           <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-            Save time by downloading multiple plugins at once, properly named and organized. Perfect for server administrators and Minecraft enthusiasts.
+            批量下载插件，自动命名整理，节省时间。专为服务器管理员和Minecraft爱好者设计。
           </p>
           <Link
             href="/download"
             className="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors"
           >
             <Download className="mr-2 h-5 w-5" />
-            Start Downloading
+            前往下载页面
           </Link>
         </div>
 
@@ -27,9 +27,9 @@ export default function Home() {
             <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-600/10 text-primary-500 mb-4">
               <Download className="h-6 w-6" />
             </div>
-            <h3 className="text-xl font-semibold mb-2">Bulk Downloads</h3>
+            <h3 className="text-xl font-semibold mb-2">批量下载</h3>
             <p className="text-gray-400">
-              Download multiple plugins simultaneously and save them in an organized folder structure.
+              同时下载多个插件并保存到整理好的文件夹结构中。
             </p>
           </div>
 
@@ -37,9 +37,9 @@ export default function Home() {
             <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-600/10 text-primary-500 mb-4">
               <CheckCircle className="h-6 w-6" />
             </div>
-            <h3 className="text-xl font-semibold mb-2">Version Compatibility</h3>
+            <h3 className="text-xl font-semibold mb-2">版本兼容</h3>
             <p className="text-gray-400">
-              Easily find plugins that work with your Minecraft server version.
+              轻松找到与您的Minecraft服务器版本兼容的插件。
             </p>
           </div>
 
@@ -47,9 +47,9 @@ export default function Home() {
             <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-600/10 text-primary-500 mb-4">
               <Zap className="h-6 w-6" />
             </div>
-            <h3 className="text-xl font-semibold mb-2">Fast & Easy</h3>
+            <h3 className="text-xl font-semibold mb-2">快速便捷</h3>
             <p className="text-gray-400">
-              Simple interface designed to help you find and download plugins quickly.
+              简洁界面设计，助您快速查找和下载插件。
             </p>
           </div>
         </div>

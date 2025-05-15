@@ -268,9 +268,9 @@ export function DownloadSection() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Package className="h-5 w-5 text-primary-400" />
-              <h2 className="text-lg font-medium text-white">Download Queue</h2>
+              <h2 className="text-lg font-medium text-white">下载队列</h2>
               <span className="text-sm text-gray-400">
-                {savedPlugins.length} plugin{savedPlugins.length !== 1 ? 's' : ''}
+                {savedPlugins.length} 个插件
               </span>
             </div>
             {savedPlugins.length > 0 && (
@@ -282,12 +282,12 @@ export function DownloadSection() {
                 {isDownloading ? (
                   <>
                     <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                    <span>Downloading... {Math.round(downloadProgress)}%</span>
+                    <span>下载中... {Math.round(downloadProgress)}%</span>
                   </>
                 ) : (
                   <>
                     <Download className="h-4 w-4" />
-                    <span>Download All</span>
+                    <span>下载全部</span>
                   </>
                 )}
               </button>
@@ -300,9 +300,9 @@ export function DownloadSection() {
         {savedPlugins.length === 0 ? (
           <div className="bg-dark-800/50 backdrop-blur rounded-xl p-8 text-center ring-1 ring-white/5">
             <Package className="h-12 w-12 text-gray-600 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-white mb-2">Your download queue is empty</h3>
+            <h3 className="text-lg font-medium text-white mb-2">你的下载队列为空。</h3>
             <p className="text-sm text-gray-400 max-w-md mx-auto">
-              Search for plugins using the search bar and add them to your queue to download them all at once.
+              通过搜索栏查找插件，并将其添加到下载队列中，即可一次性批量下载。
             </p>
           </div>
         ) : (

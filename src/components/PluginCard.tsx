@@ -131,7 +131,7 @@ export default function PluginCard({ plugin, showActions = true }: PluginCardPro
             </p>
             <div className="mt-2 flex items-center gap-3">
               <span className="text-sm text-gray-500 dark:text-gray-400">
-                {plugin.downloads.toLocaleString()} downloads
+                {plugin.downloads.toLocaleString()} 下载量
               </span>
               {plugin.provider === 'modrinth' ? (
                 <span className="inline-flex items-center rounded-full bg-emerald-50 dark:bg-emerald-900/30 px-2 py-1 text-xs font-medium text-emerald-700 dark:text-emerald-400 ring-1 ring-inset ring-emerald-600/20 dark:ring-emerald-500/30">
@@ -153,7 +153,7 @@ export default function PluginCard({ plugin, showActions = true }: PluginCardPro
                   className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-md text-red-700 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors"
                 >
                   <TrashIcon className="h-4 w-4" />
-                  Remove
+                  移除
                 </button>
               ) : (
                 !plugin.premium ? (
@@ -163,7 +163,7 @@ export default function PluginCard({ plugin, showActions = true }: PluginCardPro
                       disabled={!selectedVersion}
                   >
                     <PlusIcon className="h-4 w-4" />
-                    Add to Queue
+                    添加到队列
                   </button>
                 ) : (
                   <button
@@ -171,7 +171,7 @@ export default function PluginCard({ plugin, showActions = true }: PluginCardPro
                       disabled
                       title="This is a premium plugin and cannot be added to the queue. Please download it from the original site."
                   >
-                    Premium Plugin
+                    付费插件
                   </button>
                 )
             )}
@@ -227,7 +227,7 @@ export default function PluginCard({ plugin, showActions = true }: PluginCardPro
                             )}
                             {version.releaseDate && (
                               <span className="block truncate text-xs text-gray-500 dark:text-gray-400">
-                                Released: {version.releaseDate}
+                                发布于： {version.releaseDate}
                               </span>
                             )}
                           </div>
@@ -241,7 +241,7 @@ export default function PluginCard({ plugin, showActions = true }: PluginCardPro
 
             {selectedVersion?.minecraftVersions.length > 0 && (
               <div className="text-sm">
-                <span className="text-gray-500 dark:text-gray-400">Supported MC versions: </span>
+                <span className="text-gray-500 dark:text-gray-400">支持的MC版本： </span>
                 <span className="text-gray-700 dark:text-gray-300">
                   {selectedVersion.minecraftVersions.join(', ')}
                 </span>

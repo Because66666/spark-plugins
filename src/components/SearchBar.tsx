@@ -21,7 +21,7 @@ export function SearchBar({ query, onChange, onSubmit, isLoading }: SearchBarPro
         type="text"
         value={query}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="Search plugins..."
+        placeholder="检索插件..."
         className="flex-1 px-4 py-2 bg-zinc-800 rounded-lg text-zinc-100 placeholder:text-zinc-400"
       />
       <button

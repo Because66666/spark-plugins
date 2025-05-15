@@ -40,7 +40,7 @@ export function SearchSection() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-            placeholder="Search plugins..."
+            placeholder="检索插件..."
             className="w-full bg-dark-900/50 text-gray-100 rounded-lg pl-10 pr-4 py-2.5 ring-1 ring-white/10 placeholder:text-gray-500 focus:ring-2 focus:ring-primary-500/50 focus:outline-none transition-all"
           />
         </div>
@@ -50,7 +50,7 @@ export function SearchSection() {
         {isLoading ? (
           <div className="text-center py-8">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500 mx-auto"></div>
-            <p className="text-sm text-gray-400 mt-4">Searching plugins...</p>
+            <p className="text-sm text-gray-400 mt-4">检索插件中...</p>
           </div>
         ) : results.length > 0 ? (
           <div className="space-y-3">
@@ -60,7 +60,7 @@ export function SearchSection() {
           </div>
         ) : searchTerm ? (
           <div className="text-center py-8">
-            <p className="text-sm text-gray-400">No plugins found. Try a different search term.</p>
+            <p className="text-sm text-gray-400">没有找到有关插件。要不换个关键词？</p>
           </div>
         ) : null}
       </div>

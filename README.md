@@ -1,6 +1,6 @@
 # SparkPlugins
 
-一个现代高效的Minecraft插件下载器，可以从SpigotMC和Modrinth等多个来源搜索和下载插件。Because66666进行了全局汉化。不用于PR.
+一个现代高效的Minecraft插件下载器，可以从SpigotMC和Modrinth等多个来源搜索和下载插件。Because66666进行了全局汉化。不用于PR。开源协议不变。
 
 ## 功能
 
